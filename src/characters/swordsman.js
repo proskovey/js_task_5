@@ -2,6 +2,8 @@ import Character from './character';
 
 class Swordsman extends Character {
     constructor(name) {
-        super(name, 40, 10);
+        super(name);
+        this.attack = 40;
+        this.defence = 10;
     }
 }
