@@ -1,10 +1,10 @@
 import Character from '../character';
 import Bowerman from '../bowerman';
-import Swordsman from '../swordsman';
+import Daemon from '../daemon';
 import Magician from '../magician';
+import Swordsman from '../swordsman';
 import Undead from '../undead';
 import Zombie from '../zombie';
-import Daemon from '../daemon';
 
 test('test class for Character', () => {
 	const anyUser = new Character();
