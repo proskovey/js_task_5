@@ -1,18 +1,16 @@
 const path = require('path');
 
 module.exports = {
-  output: {
-    path: path.resolve(__dirname, 'dist'),
+  entry: {
+    app: './src/index.js',
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-    ],
+
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist',
+  },
+  devServer: {
+    overlay: true,
   },
 };
