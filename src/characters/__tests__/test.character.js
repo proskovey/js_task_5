@@ -1,37 +1,90 @@
 import Character from '../character';
+import Bowerman from '../bowerman';
+import Swordsman from '../swordsman';
+import Magician from '../magician';
+import Undead from '../undead';
+import Zombie from '../zombie';
+import Daemon from '../daemon';
 
-test('check name length', () => {
-    expect(() => {let one = new Character('1', 10, 10)}).toThrow();
-
-    expect(() => {let moreTen = new Character('12345678900', 10, 10)}).toThrow();
-
-    expect(() => {let two = new Character('12', 10, 10)}).not.toThrow();
-
-    expect(() => {let some = new Character('some', 10, 10)}).not.toThrow();
-
-    expect(() => {let ten = new Character('1234567890', 10, 10)}).not.toThrow();
+test('test class for Character', () => {
+	const anyUser = new Character();
+	expect(anyUser).toEqual({
+ attack: undefined, defence: undefined, level: 1, health: 100,
+});
 });
 
-test('check method levelUp', () => {
-    let char = new Character('zom', 10, 10);
-    char.levelUp();
-    const expected = {_name: 'zom', type: 'Character', health: 100, level: 2, attack: 12, defence: 12};
-    expect(char).toEqual(expected);
-
-    char.health = -1;
-    expect(() => {char.levelUp()}).toThrow();
+test('test class for Bowerman', () => {
+	const bowerman = new Bowerman();
+	expect(bowerman).toEqual({
+ attack: 25, defence: 25, level: 1, health: 100,
+});
 });
 
-test.each([
-    ['health more 0', -1, 10, -1],
-    ['health equal 0', 0, 10, -9],
-    ['health less 0', 10, 10, 1]
-])(
-    'check method damage', (healthStatus, health, points, expected) => {
-    let char = new Character('zom', 10, 10);
-    char.health = health;
-    char.damage(points);
-    
-    const expectedChar = {_name: 'zom', type: 'Character', health: expected, level: 1, attack: 10, defence: 10};
-    expect(char).toEqual(expectedChar);
+test('test class for Swordsman', () => {
+	const swordsman = new Swordsman();
+	expect(swordsman).toEqual({
+ attack: 40, defence: 10, level: 1, health: 100,
 });
+});
+
+test('test class for Magician', () => {
+	const magician = new Magician();
+	expect(magician).toEqual({
+ attack: 10, defence: 40, level: 1, health: 100,
+});
+});
+
+test('test class for Undead', () => {
+	const undead = new Undead();
+	expect(undead).toEqual({
+ attack: 25, defence: 25, level: 1, health: 100,
+});
+});
+
+test('test class for Zombie', () => {
+	const zombie = new Zombie();
+	expect(zombie).toEqual({
+ attack: 40, defence: 10, level: 1, health: 100,
+});
+});
+
+test('test class for Daemon', () => {
+	const daemon = new Daemon();
+	expect(daemon).toEqual({
+ attack: 10, defence: 40, level: 1, health: 100,
+});
+});
+
+test('test class for levelUp function for Bowerman', () => {
+	const bowerman = new Bowerman();
+	bowerman.health = 50;
+	bowerman.levelUp();
+	expect(bowerman).toEqual({
+		attack: 30, defence: 30, level: 2, health: 100,
+});
+});
+
+test('test class for levelUp function for Swordsman', () => {
+	const swordsman = new Swordsman();
+	swordsman.health = 20;
+	swordsman.levelUp();
+	expect(swordsman).toEqual({
+ attack: 48, defence: 12, level: 2, health: 100,
+});
+});
+
+test('test class for levelUp function for Magician', () => {
+	const magician = new Magician();
+	magician.levelUp();
+	expect(magician).toEqual({
+ attack: 12, defence: 48, level: 2, health: 100,
+});
+});
+
+test('test class for levelUp function for dead Magician', () => {
+	const magician = new Magician();
+	magician.health = 0;
+
+	expect(() => {
+		magician.levelUp();
+	}).toThrow();
