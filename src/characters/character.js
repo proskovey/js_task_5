@@ -4,8 +4,9 @@ export default class Character {
     this.type = this.__proto__.constructor.name;
     this.health = 100;
     this.level = 1;
-    this.attack = attack;
-    this.defence = defence;
+    
+    this.attack = undefined;
+    this.defence = undefined;
   }
 
   get name() {
